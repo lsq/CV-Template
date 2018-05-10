@@ -73,7 +73,7 @@ Projects,Software,Solutions,SQL,Team,Technologies,Testing,Tools,Web}
 %Command to create the sidebar layout
 \newcommand{\sidebar}{
 	\begin{tikzpicture}[overlay]
-		\node [rectangle, fill=sidecolor, anchor=north west, minimum width=9.25cm,
+		\node [rectangle, fill=sidecolor, anchor=north west, minimum width=9.25cm, 
 		minimum height=\paperheight+2cm] (box) at (-2cm,3cm){};%
 	\end{tikzpicture}}
 
@@ -87,7 +87,7 @@ Projects,Software,Solutions,SQL,Team,Technologies,Testing,Tools,Web}
 \newcommand{\icon}[1]{
 	\begin{tikzpicture}[baseline=(char.base)]
 		\node[circle,draw,baseline=(char.base),mainblue,fill=mainblue,text=white,
-		inner sep=0.25pt,minimum size=10mm,align=center,text centered](char){\Large\textbf{{#1}}};
+		inner sep=0.25pt,minimum size=10mm,align=center,text centered](char){\large\textbf{{#1}}};
 	\end{tikzpicture}}
 
 %Command to create the star scale
@@ -103,8 +103,8 @@ Projects,Software,Solutions,SQL,Team,Technologies,Testing,Tools,Web}
 	\let\partstar=\pgfmathresult
 	\ifnum\partstar>0
 		\pgfmathsetmacro\starpart{#1-(int(#1))}
-		\path [clip] ($(star\partstar.outer point 3)!(star\partstar.outer point 2)!(star\partstar.outer point 4)$)
-		rectangle
+		\path [clip] ($(star\partstar.outer point 3)!(star\partstar.outer point 2)!(star\partstar.outer point 4)$) 
+		rectangle 
 		($(star\partstar.outer point 2 |- star\partstar.outer point 1)!\starpart!(star\partstar.outer point 1 -| star\partstar.outer point 5)$);
 		\fill (\partstar*1em,0) node[scorestars,fill=mainblue]{};
 	\fi
@@ -176,7 +176,7 @@ Projects,Software,Solutions,SQL,Team,Technologies,Testing,Tools,Web}
 	\\}
 
 \pagestyle{empty} % Disable headers and footers
-\setlength{\parindent}{0pt}
+\setlength{\parindent}{0pt} 
 \setlength{\TPHorizModule}{1cm}
 \setlength{\TPVertModule}{1cm}
 \hypersetup{
@@ -198,7 +198,7 @@ urlcolor={blue!80!black}}
 \end{textblock}
 
 \begin{textblock}{7}(0.5, 3.75)
-	\profilesection{General Information}
+	\profilesection{General Information}	
 	\vspace{-\baselineskip}
 	\begin{table}
 		\begin{tabularx}{7cm}{cX}
@@ -304,3 +304,4 @@ urlcolor={blue!80!black}}
 	Physics \separator Reading \separator Fitness \separator Cosom Hockey \separator Machine Learning \separator Philanthropy
 \end{textblock}
 \end{document}
+
