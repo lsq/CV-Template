@@ -2,7 +2,7 @@
 \documentclass{article}
 
 %Required Packages
-\usepackage{xcolor}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{fontawesome}
 \usepackage{tikz}
 	\usetikzlibrary{shapes.geometric}
@@ -27,6 +27,7 @@
 \usepackage{multirow}
 \usepackage{colortbl}
 \usepackage{mathabx}
+\usepackage{pgf,pgffor}
 
 %Definition of the colors
 \definecolor{white}{RGB}{255,255,255}
@@ -45,8 +46,8 @@
 \newcommand{\cvlocation}{Quebec, Canada}
 \newcommand{\cvlinkedin}{https://www.linkedin.com/in/samuel-cabral-cruz-42b84a117}
 \newcommand{\cvgithub}{https://github.com/SamuelCabralCruz}
-\newcommand{\cvpersonnalitytype}{INTJ-T}
-\newcommand{\cvpersonnalitytypeurl}{https://www.16personalities.com/intj-personality}
+\newcommand{\cvpersonalitytype}{INTJ-T}
+\newcommand{\cvpersonalitytypeurl}{https://www.16personalities.com/intj-personality}
 \newcommand{\cvwhitewords}{Agile,Applications,ASP.NET,Build,C\#,Code,Collaborate,Data,Data Scientist,
 Design,Development,Engineering,Environment,Java,Javascript,Knowledge,Machine Learning,Mobile,.NET,Product,
 Projects,Software,Solutions,SQL,Team,Technologies,Testing,Tools,Web}
@@ -186,6 +187,29 @@ Projects,Software,Solutions,SQL,Team,Technologies,Testing,Tools,Web}
 	% \end{tikzpicture}
 	\\}
 
+% #1: name
+% #2: description
+% #3: year
+% #4: keywords
+% #5: url
+\newcommand{\ProjectStatement}[5]{
+	\normalfont\normalsize
+	\vspace{-\baselineskip}
+	\vspace{12pt} \\
+	\large{\textbf{\href{#5}{#1}}} \hfill \small\textcolor{gray}{\texttt{\# #2}} \hfill \textcolor{mainblue}{\textbf{#3}} \\
+	\ttfamily
+	\bfseries
+	\textcolor{Magenta}{keywords} = \textcolor{red}{[}
+	\foreach \k [count=\i] in {#4}{
+	  \ifnum \i=1
+			\hspace{-0.4cm}\textcolor{Aquamarine}{"\k"}
+	  \else
+			\hspace{-0.4cm}\textcolor{red}{,} \textcolor{Aquamarine}{"\k"}
+		\fi
+	}
+	\hspace{-0.4cm}\textcolor{red}{]} \\
+	\normalfont\normalsize}
+
 \pagestyle{empty} % Disable headers and footers
 \setlength{\parindent}{0pt}
 \setlength{\TPHorizModule}{1cm}
@@ -220,7 +244,7 @@ urlcolor={blue!80!black}}
 			\icon{\faMapMarker}&\cvlocation\\
 			\icon{\faGithubAlt}&\href{\cvgithub}{\large\textbf{GitHub Profile}}\\
 			\icon{\faLinkedin}&\href{\cvlinkedin}{\large\textbf{LinkedIn Profile}}\\
-			\icon{\faGroup}&{\large\textbf{Personnality Type: \href{\cvpersonnalitytypeurl}{\cvpersonnalitytype}}}\\
+			\icon{\faGroup}&{\large\textbf{personality Type: \href{\cvpersonalitytypeurl}{\cvpersonalitytype}}}\\
 		\end{tabularx}
 	\end{table}
 
@@ -268,6 +292,7 @@ urlcolor={blue!80!black}}
 	\vspace{-\baselineskip}
 	\begin{ExpStatement}{05/2017}{12/2017}{Desjardins, General Insurance Group}{Database Analyst - Research and Development}
 		\item Bulk extraction from indemnization agent notes using NLP approaches
+		\item Documentation generator (similar to \textit{Doxygen}) using \texttt{XSD}, \texttt{XML} and \texttt{XSL} for \texttt{SAS}
 		\item Redesign of the data extraction pipeline used to create fraud models
 	\end{ExpStatement}
 	\vspace{-1.5\baselineskip}
@@ -284,6 +309,10 @@ urlcolor={blue!80!black}}
 				\item Rented and Vacant Condos
 			\end{itemize}
 	\end{ExpStatement}
+
+	\sectiontitle{Projects}
+	\vspace{-\baselineskip}
+	\ProjectStatement{CentraLib}{Centralized Bib\TeX\space References Manager}{2017}{Python, Unit Testing, TravisCI, Coverage}{https://github.com/SamuelCabralCruz/centralLib}
 
 	\sectiontitle{Achievements}
 	Participation to Academic Actuarial Competitions - ActuLab
