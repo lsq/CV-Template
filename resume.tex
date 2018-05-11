@@ -45,6 +45,8 @@
 \newcommand{\cvlocation}{Quebec, Canada}
 \newcommand{\cvlinkedin}{https://www.linkedin.com/in/samuel-cabral-cruz-42b84a117}
 \newcommand{\cvgithub}{https://github.com/SamuelCabralCruz}
+\newcommand{\cvpersonnalitytype}{INTJ-T}
+\newcommand{\cvpersonnalitytypeurl}{https://www.16personalities.com/intj-personality}
 \newcommand{\cvwhitewords}{Agile,Applications,ASP.NET,Build,C\#,Code,Collaborate,Data,Data Scientist,
 Design,Development,Engineering,Environment,Java,Javascript,Knowledge,Machine Learning,Mobile,.NET,Product,
 Projects,Software,Solutions,SQL,Team,Technologies,Testing,Tools,Web}
@@ -70,10 +72,25 @@ Projects,Software,Solutions,SQL,Team,Technologies,Testing,Tools,Web}
 	\node[rectangle,rounded corners=1mm,draw=mainblue,anchor=text,fill=mainblue,inner sep=3pt,minimum height=0.5cm]
 		{\small\bfseries\textcolor{white}{#1}};}
 
+\newcommand{\mypastille}[2]{
+	\begin{tikzpicture}
+		\node[rectangle,draw=mainblue,fill=mainblue,minimum height=0.5cm, rounded corners=1mm] (a)
+			{\small\bfseries\textcolor{white}{#1 \space\space #2}};
+		\begin{scope}
+	    \clip (a.south east) -- ++(-8.5mm, 0) rectangle (a.north east);
+			\node[rectangle,draw=sidecolor,fill=sidecolor,minimum height=0.5cm, rounded corners=1mm] (a)
+				{\small\bfseries\textcolor{black}{#1 \space\space #2}};
+		\end{scope}
+
+		% \node[rectangle,draw=sidecolor,fill=sidecolor,minimum height=0.5cm, right of=a, anchor=west] at (a.east)
+		% 	{\small\bfseries\textcolor{black}{#2}};
+	\end{tikzpicture}
+}
+
 %Command to create the sidebar layout
 \newcommand{\sidebar}{
 	\begin{tikzpicture}[overlay]
-		\node [rectangle, fill=sidecolor, anchor=north west, minimum width=9.25cm, 
+		\node [rectangle, fill=sidecolor, anchor=north west, minimum width=9.25cm,
 		minimum height=\paperheight+2cm] (box) at (-2cm,3cm){};%
 	\end{tikzpicture}}
 
@@ -103,8 +120,8 @@ Projects,Software,Solutions,SQL,Team,Technologies,Testing,Tools,Web}
 	\let\partstar=\pgfmathresult
 	\ifnum\partstar>0
 		\pgfmathsetmacro\starpart{#1-(int(#1))}
-		\path [clip] ($(star\partstar.outer point 3)!(star\partstar.outer point 2)!(star\partstar.outer point 4)$) 
-		rectangle 
+		\path [clip] ($(star\partstar.outer point 3)!(star\partstar.outer point 2)!(star\partstar.outer point 4)$)
+		rectangle
 		($(star\partstar.outer point 2 |- star\partstar.outer point 1)!\starpart!(star\partstar.outer point 1 -| star\partstar.outer point 5)$);
 		\fill (\partstar*1em,0) node[scorestars,fill=mainblue]{};
 	\fi
@@ -119,7 +136,7 @@ Projects,Software,Solutions,SQL,Team,Technologies,Testing,Tools,Web}
 			\draw[fill=white,mainblue](0,\i) rectangle (\y,\i+\progressbarthickness);
 			\node[circle,fill,mainblue] at (\y,\i+\progressbarthickness/2){};
 			\node[circle,fill,maingray,scale=0.5] at (\y,\i+\progressbarthickness/2){};
-			\node[above right] at (0,\i+\progressbarthickness){\x};}
+			\node[above right] at (0,\i+\progressbarthickness){\large\x};}
 	\end{tikzpicture}}
 
 %Command for printing white words
@@ -132,7 +149,8 @@ Projects,Software,Solutions,SQL,Team,Technologies,Testing,Tools,Web}
 	\bfseries\LARGE
 	\textcolor{mainblue}{\substr{#1}{1}{3}}%
 	\textcolor{black}{\substr{#1}{4}{end}}
-	\normalfont\normalsize}
+	\normalfont\normalsize
+	\newline}
 
 %Command to let mark in order to trace tikz picture
 \newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node[circle,scale=0.01] (#1) {};}
@@ -141,25 +159,18 @@ Projects,Software,Solutions,SQL,Team,Technologies,Testing,Tools,Web}
 \newcommand{\EduStatement}[5]{
 	\normalfont\normalsize
 	\vspace{-\baselineskip}
-	\tikzmark{mark1}
-	\vspace{12pt}\\
+	\vspace{12pt} \\
 	#4\\
 	\large{\textbf{#5}}\\
 	\textcolor{mainblue}{#3\small\textbf{\hfill [#1 - #2]}}\\
-	\normalfont\normalsize
-	\tikzmark{mark2}
-%	\begin{tikzpicture}[overlay, remember picture]
-%		\draw [decoration={brace,mirror,raise=10pt,amplitude=1em},decorate,ultra thick,mainblue]
-% 		(mark1) --  (mark2);
-%	\end{tikzpicture}
-	}
+	\normalfont\normalsize}
 
 %Command to insert a new Experience Statement
 \newenvironment{ExpStatement}[4]{
 	\normalfont\normalsize
 	\vspace{-\baselineskip}
 	\tikzmark{mark1}
-	\vspace{12pt}\\
+	\vspace{12pt} \\
 	#3\\
 	\large{\textbf{#4}}\\
 	\small
@@ -169,14 +180,14 @@ Projects,Software,Solutions,SQL,Team,Technologies,Testing,Tools,Web}
 	\end{itemize}
 	\normalfont\normalsize
 	\tikzmark{mark2}
-%	\begin{tikzpicture}[overlay, remember picture]
-%		\draw [decoration={brace,mirror,raise=10pt,amplitude=1em},decorate,ultra thick,mainblue]
-% 		(mark1) --  (mark2);
-%	\end{tikzpicture}
+	% \begin{tikzpicture}[overlay, remember picture]
+	% 	\draw [decoration={brace,mirror,raise=10pt,amplitude=1em},decorate,ultra thick,mainblue]
+	% 	(mark1) --  (mark2);
+	% \end{tikzpicture}
 	\\}
 
 \pagestyle{empty} % Disable headers and footers
-\setlength{\parindent}{0pt} 
+\setlength{\parindent}{0pt}
 \setlength{\TPHorizModule}{1cm}
 \setlength{\TPVertModule}{1cm}
 \hypersetup{
@@ -198,20 +209,22 @@ urlcolor={blue!80!black}}
 \end{textblock}
 
 \begin{textblock}{7}(0.5, 3.75)
-	\profilesection{General Information}	
+	\profilesection{General Information}
 	\vspace{-\baselineskip}
 	\begin{table}
 		\begin{tabularx}{7cm}{cX}
 			\icon{\faBirthdayCake}&\cvbirthdate\\
-			\icon{\faAt}&\bfseries\href{mailto:\cvemail}{\cvemail}\\
+			\icon{\faAt}&\large\bfseries\href{mailto:\cvemail}{\cvemail}\\
 			\icon{\faPhone}&\cvphonenumber\\
 			\icon{\faHome}&\cvaddress\\
 			\icon{\faMapMarker}&\cvlocation\\
-			\icon{\faGithubAlt}&\href{\cvgithub}{\large\textbf{See Profile}}\\
-			\icon{\faLinkedin}&\href{\cvlinkedin}{\large\textbf{See Profile}}\\
+			\icon{\faGithubAlt}&\href{\cvgithub}{\large\textbf{GitHub Profile}}\\
+			\icon{\faLinkedin}&\href{\cvlinkedin}{\large\textbf{LinkedIn Profile}}\\
+			\icon{\faGroup}&{\large\textbf{Personnality Type: \href{\cvpersonnalitytypeurl}{\cvpersonnalitytype}}}\\
 		\end{tabularx}
 	\end{table}
 
+	\vspace{\baselineskip}
 	\profilesection{Languages}
 	\vspace{-\baselineskip}
 	\begin{table}
@@ -219,16 +232,24 @@ urlcolor={blue!80!black}}
 		\begin{tabularx}{7cm}{Xc}
 			English & \starscale{3.6}{5}\\
 			French & \starscale{4.4}{5}\\
-			Spanish & \starscale{1.5}{5}\\
-			American Sign \newline Language & \starscale{2}{5}\\
 		\end{tabularx}
 	\end{table}
 
-	\profilesection{Programming Skills}
-	\skillbar{XML/3.5,VBA/4.5,SQL/5.5,SAS/5,R/5.2,Python/6.3,\LaTeX/5,Java/1.5,HTML/2.5,\faGit/4.5,C\raisebox{0.5ex}{++}/4.2}
-% AHK/4
-% \textbf{Note:} \\
-% Currently following courses to increase my \newline knowledge in C\raisebox{0.5ex}{++} and Python
+	\vspace{\baselineskip}
+	\profilesection{Working Skills}
+	% Use reverse order (foreach latex...)
+	\skillbar{
+		Work Under Pressure/4,
+		Team Working/5,
+		Repetitive Tasks/1,
+		Problem Solving/6.25,
+		Organized/6.75,
+		Negotiation/4.25,
+		Perseverance/6.5,
+		Leadership/6,
+		Confidence/5.75,
+		Communication/5.5,
+		Commercial Awareness/5}
 \end{textblock}
 
 \begin{textblock}{11.35}(9.25, 0.25)
@@ -237,49 +258,34 @@ urlcolor={blue!80!black}}
 
 \begin{textblock}{11.35}(9.25, 1)
 	\sectiontitle{Education}
+	\vspace{-\baselineskip}
 	\EduStatement{01/2017}{Present}{University Laval}{Bachelor Degree}{Software Engineering}
-	\vspace{-10pt}
+	\vspace{-\baselineskip}
+	\EduStatement{01/2018}{06/2018}{Norwegian University of Science and Technology}{Exchange Semester - International Profile}{Software Engineering}
+	\vspace{-\baselineskip}
 	\EduStatement{09/2012}{05/2015}{University Laval}{Bachelor Degree}{Actuarial Sciences}\\
 	\sectiontitle{Experience}
-	\begin{ExpStatement}{05/2013}{12/2016}{Desjardins, General Insurance Group}{Actuarial Analyst - Property Ratemaking}
-		\item Segmentation and pricing models revision of the rented and vacant condo coverages
-		\item Implementation of a new segmentation for the endorsement 16c - Water Damage (Tenants and Condos)
-		\item Creation of multiple programs in order to identify, extract, produce and validate the information contained in the pricing system
-		\item Integration of State Farm's Canadian book of business following the acquisition of 2014
-		\item Production of the assumptions surrounding State Farm's portfolio for the 2017 \newline Budget
-		\item Creation of a dashboard for the monitoring of multiple KPIs to ensure the quality of the conversion solution
+	\vspace{-\baselineskip}
+	\begin{ExpStatement}{05/2017}{12/2017}{Desjardins, General Insurance Group}{Database Analyst - Research and Development}
+		\item Bulk extraction from indemnization agent notes using NLP approaches
+		\item Redesign of the data extraction pipeline used to create fraud models
 	\end{ExpStatement}
-	\\
-	\sectiontitle{Certificates}
-	\vspace{3pt}
-	\begin{table}
-		\begin{tabularx}{\textwidth}{A{1.5cm}XM{1.5cm}}
-			\toprule
-			\centering\textcolor{black}{Exam}&\centering\textbf{Description}&\textbf{Date}\\
-			\midrule
-			P/1&Probability&01/2013\\
-			FM/2&Financial Mathematics&06/2013\\
-			MFE/3F&Models for Financial Economics&11/2013\\
-			MLC/3LC&Models for Life Contingencies&10/2014\\
-			3ST&Models for Stochastic Processes and Statistics&12/2014\\
-			C/4&Construction and Evaluation of Actuarial Models&02/2014\\
-			CA1&CAS Risk Management and Insurance Operations&09/2014\\
-			CA2&CAS Insurance Accounting, Coverage Analysis, Insurance Law, and Insurance Regulation&01/2015\\
-			ECON&VEE Economics&08/2015\\
-			CORPFIN&VEE Corporate Finance&08/2015\\
-			APPSTATS&VEE Applied Statistics&08/2015\\
-			EXAM 5&Basic Techniques for Ratemaking and Estimating Claim Liabilities&12/2015\\
-			COP&Course on Professionalism&12/2016\\
-			\bottomrule
- 		\end{tabularx}
- 	\end{table}
- 	\vspace{\baselineskip}
-	\sectiontitle{Working\ Skills\ \&\ Strengths}\\
-	\mybox{Modelisation} \mybox{Business, Risk and Cost-Benefit Analysis} \mybox{Creative} \mybox{Passionate}\\
-	\mybox{Willis Towers Watson: Pricing Softwares} \mybox{Hard-Worker} \mybox{Validation Process}\\
-	\mybox{Business Optimization} \mybox{Critical-Thinking} \mybox{User Experience} \mybox{Quick Leaner}\\
-	\newline
-	\sectiontitle{Achievements}\\
+	\vspace{-1.5\baselineskip}
+	\begin{ExpStatement}{05/2013}{12/2016}{}{Actuarial Analyst - Property Ratemaking}
+		\item Creating a dashboard for the monitoring of the conversion solution's KPIs
+		\item Production of 2017 Budget's assumptions for newly acquired State Farm's portfolio
+		\item Integration of State Farm's Canadian book of business acquired in 2014
+		\item Creation of multiple programs in order to identify, extract, produce and validate the information contained in the pricing system
+		\item Segmentation and pricing models revision
+			\vspace{-0.5\baselineskip}
+			\begin{itemize}
+				\setlength\itemsep{-1mm}
+				\item Endorsement 16c Water Damage (Tenants and Condos)
+				\item Rented and Vacant Condos
+			\end{itemize}
+	\end{ExpStatement}
+
+	\sectiontitle{Achievements}
 	Participation to Academic Actuarial Competitions - ActuLab
 	\begin{itemize}[label=\textcolor{mainblue}{\textbullet},topsep=0pt,partopsep=0pt,itemsep=0pt,
 	parsep=0pt]
@@ -297,11 +303,13 @@ urlcolor={blue!80!black}}
 		5\textsuperscript{th} Place - Desjardins, General Insurance Group \hfill 2014}
 		\normalsize\normalfont
 	\end{itemize}
-	Obtaining a Scholarship of Excellence\\
+	Admission Excellence Scholarship \\
 	\small\bfseries\textcolor{mainblue}{University Laval \hfill 2011}\\
-	\normalfont\normalsize\\
-	\sectiontitle{Interests}\\
-	Physics \separator Reading \separator Fitness \separator Cosom Hockey \separator Machine Learning \separator Philanthropy
+	\normalfont\normalsize
 \end{textblock}
 \end{document}
 
+
+
+% \profilesection{Programming Skills}
+% \skillbar{XML/3.5,VBA/4.5,SQL/5.5,SAS/5,R/5.2,Python/6.3,\LaTeX/5,Java/1.5,HTML/2.5,\faGit/4.5,C\raisebox{0.5ex}{++}/4.2}
