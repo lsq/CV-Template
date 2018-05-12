@@ -1,5 +1,5 @@
 %Document Class Definition
-\documentclass{article}
+\documentclass[8pt]{article}
 
 %Required Packages
 \usepackage[dvipsnames]{xcolor}
@@ -13,6 +13,7 @@
 \usepackage{setspace}
 \usepackage[absolute,overlay]{textpos}
 \usepackage{hyperref}
+\usepackage{array}
 \usepackage{tabularx}
 \usepackage{calc}
 \usepackage{ifthen}
@@ -28,6 +29,8 @@
 \usepackage{colortbl}
 \usepackage{mathabx}
 \usepackage{pgf,pgffor}
+
+\renewcommand{\familydefault}{\sfdefault}
 
 %Definition of the colors
 \definecolor{white}{RGB}{255,255,255}
@@ -105,7 +108,7 @@ Projects,Software,Solutions,SQL,Team,Technologies,Testing,Tools,Web}
 \newcommand{\icon}[1]{
 	\begin{tikzpicture}[baseline=(char.base)]
 		\node[circle,draw,baseline=(char.base),mainblue,fill=mainblue,text=white,
-		inner sep=0.25pt,minimum size=10mm,align=center,text centered](char){\large\textbf{{#1}}};
+		inner sep=0.15pt,minimum size=9mm,align=center,text centered](char){\large\textbf{{#1}}};
 	\end{tikzpicture}}
 
 %Command to create the star scale
@@ -161,8 +164,7 @@ Projects,Software,Solutions,SQL,Team,Technologies,Testing,Tools,Web}
 	\normalfont\normalsize
 	\vspace{-\baselineskip}
 	\vspace{12pt} \\
-	#4\\
-	\large{\textbf{#5}}\\
+	\large{\textbf{#5}} - \normalsize #4\\
 	\textcolor{mainblue}{#3\small\textbf{\hfill [#1 - #2]}}\\
 	\normalfont\normalsize}
 
@@ -196,7 +198,7 @@ Projects,Software,Solutions,SQL,Team,Technologies,Testing,Tools,Web}
 	\normalfont\normalsize
 	\vspace{-\baselineskip}
 	\vspace{12pt} \\
-	\large{\textbf{\href{#5}{#1}}} \hfill \small\textcolor{gray}{\texttt{\# #2}} \hfill \textcolor{mainblue}{\textbf{#3}} \\
+	\normalsize{\textbf{\href{#5}{#1}}} \hfill \small\textcolor{gray}{\texttt{\# #2}} \hfill \textcolor{mainblue}{\textbf{#3}} \\
 	\ttfamily
 	\bfseries
 	\textcolor{Magenta}{keywords} = \textcolor{red}{[}
@@ -236,7 +238,9 @@ urlcolor={blue!80!black}}
 	\profilesection{General Information}
 	\vspace{-\baselineskip}
 	\begin{table}
-		\begin{tabularx}{7cm}{cX}
+		\bgroup
+		\def\arraystretch{2.1}
+		\begin{tabular}{m{0.75cm}m{6cm}}
 			\icon{\faBirthdayCake}&\cvbirthdate\\
 			\icon{\faAt}&\large\bfseries\href{mailto:\cvemail}{\cvemail}\\
 			\icon{\faPhone}&\cvphonenumber\\
@@ -244,8 +248,9 @@ urlcolor={blue!80!black}}
 			\icon{\faMapMarker}&\cvlocation\\
 			\icon{\faGithubAlt}&\href{\cvgithub}{\large\textbf{GitHub Profile}}\\
 			\icon{\faLinkedin}&\href{\cvlinkedin}{\large\textbf{LinkedIn Profile}}\\
-			\icon{\faGroup}&{\large\textbf{personality Type: \href{\cvpersonalitytypeurl}{\cvpersonalitytype}}}\\
-		\end{tabularx}
+			\icon{\faGroup}&{\large\textbf{Personality Type: \href{\cvpersonalitytypeurl}{\cvpersonalitytype}}}\\
+		\end{tabular}
+		\egroup
 	\end{table}
 
 	\vspace{\baselineskip}
@@ -263,7 +268,7 @@ urlcolor={blue!80!black}}
 	\profilesection{Working Skills}
 	% Use reverse order (foreach latex...)
 	\skillbar{
-		Work Under Pressure/3.85,
+		Work Under Pressure/3.5,
 		Team Working/5,
 		Repetitive Tasks/1,
 		Problem Solving/6.25,
@@ -282,26 +287,26 @@ urlcolor={blue!80!black}}
 
 \begin{textblock}{11.35}(9.25, 1)
 	\sectiontitle{Education}
-	\vspace{-\baselineskip}
+	\vspace{-0.75\baselineskip}
 	\EduStatement{01/2017}{Present}{University Laval}{Bachelor Degree}{Software Engineering}
-	\vspace{-\baselineskip}
-	\EduStatement{01/2018}{06/2018}{Norwegian University of Science and Technology}{Exchange Semester - International Profile}{Software Engineering}
-	\vspace{-\baselineskip}
+	\vspace{-0.5\baselineskip}
+	\EduStatement{01/2018}{06/2018}{Norwegian University of Science and Technology}{Exchange Semester}{Software Engineering}
+	\vspace{-0.5\baselineskip}
 	\EduStatement{09/2012}{05/2015}{University Laval}{Bachelor Degree}{Actuarial Sciences}
 
 	\sectiontitle{Experience}
-	\vspace{-\baselineskip}
+	\vspace{-0.75\baselineskip}
 	\begin{ExpStatement}{05/2017}{12/2017}{Desjardins, General Insurance Group}{Database Analyst - Research and Development}
-		\item Bulk extraction from indemnization agent notes using NLP approaches (Python)
-		\item Documentation generator (similar to \textit{Doxygen}) using \texttt{XSD}, \texttt{XML} and \texttt{XSL} for \texttt{SAS}
-		\item Redesign of the data extraction pipeline used to create fraud models (SAS)
+		\item Bulk extraction from indemnization agent notes using NLP approaches
+		\item Documentation generator using \texttt{XSD}, \texttt{XML} and \texttt{XSL} for \texttt{SAS}
+		\item Redesign of the data extraction pipeline used to create fraud models
 	\end{ExpStatement}
 	\vspace{-1.5\baselineskip}
 	\begin{ExpStatement}{05/2013}{12/2016}{}{Actuarial Analyst - Property Ratemaking}
 		\item Creating a dashboard for the monitoring of the conversion solution's KPIs
-		\item Production of 2017 Budget's assumptions for newly acquired State Farm's portfolio
+		\item 2017 Budget's assumptions for newly acquired State Farm's portfolio
 		\item Integration of State Farm's Canadian book of business acquired in 2014
-		\item Creation of multiple programs in order to identify, extract, produce and validate the information contained in the pricing system
+		\item Creation of multiple programs in order to identify, extract, produce and \newline validate the information contained in the pricing system
 		\item Segmentation and pricing models revision
 			\vspace{-0.5\baselineskip}
 			\begin{itemize}
